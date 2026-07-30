@@ -1,0 +1,9 @@
+[project]
+name = "campusflow"
+version = "1.0.0"
+description = "Dependency-free REST API and SQLite course-planning service"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
