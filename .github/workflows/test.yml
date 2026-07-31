@@ -22,6 +22,8 @@ jobs:
           from pathlib import Path
 
           root = Path('.')
+          workflow_path = root / '.github/workflows/test.yml'
+          preserved_workflow = workflow_path.read_bytes()
           encoded = ''.join(path.read_text().strip() for path in sorted((root / '.portfolio-expansion').glob('part-*.txt')))
           payload = lzma.decompress(base64.b64decode(encoded))
           for child in root.iterdir():
@@ -33,6 +35,8 @@ jobs:
                   child.unlink()
           with tarfile.open(fileobj=io.BytesIO(payload), mode='r:') as archive:
               archive.extractall(root)
+          workflow_path.parent.mkdir(parents=True, exist_ok=True)
+          workflow_path.write_bytes(preserved_workflow)
           PYCODE
       - name: Commit expanded project
         run: |
