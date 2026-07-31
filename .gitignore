@@ -1,5 +1,11 @@
 __pycache__/
 .pytest_cache/
-*.pyc
+*.py[cod]
 *.db
+*.sqlite*
 .venv/
+dist/
+build/
+*.egg-info/
+coverage.xml
+.coverage

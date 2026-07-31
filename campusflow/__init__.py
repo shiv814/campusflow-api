@@ -1,5 +1,6 @@
-"""CampusFlow course-planning service."""
+"""CampusFlow academic-planning toolkit."""
 
-from .db import CoursePlanner
+from .db import ConflictError, CoursePlanner, ValidationError
 
-__all__ = ["CoursePlanner"]
+__all__ = ["ConflictError", "CoursePlanner", "ValidationError"]
+__version__ = "2.0.0"
