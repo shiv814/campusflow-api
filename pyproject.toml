@@ -1,9 +1,17 @@
 [project]
 name = "campusflow"
-version = "1.0.0"
-description = "Dependency-free REST API and SQLite course-planning service"
+version = "2.0.0"
+description = "Dependency-free academic planning REST API with SQLite analytics and validation"
 requires-python = ">=3.10"
+authors = [{name = "Shivam Patel"}]
+license = {text = "MIT"}
+keywords = ["education", "sqlite", "rest-api", "course-planning"]
+
+[project.scripts]
+campusflow-api = "campusflow.api:main"
+campusflow-seed = "campusflow.seed:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "-q"
