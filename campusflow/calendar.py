@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import UTC, date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from hashlib import sha1
 
 DAY_INDEX = {"MON": 0, "TUE": 1, "WED": 2, "THU": 3, "FRI": 4, "SAT": 5, "SUN": 6}
@@ -39,7 +39,7 @@ def _first_day(term_start: date, weekday: int) -> date:
 def export_ics(meetings: list[Meeting], *, term_start: date, term_end: date, calendar_name: str = "CampusFlow Plan") -> str:
     if term_end < term_start:
         raise ValueError("term_end must not precede term_start")
-    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//CampusFlow//Academic Plan//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", f"X-WR-CALNAME:{_escape(calendar_name)}"]
     for meeting in meetings:
         first = _first_day(term_start, DAY_INDEX[meeting.day])
